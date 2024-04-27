@@ -1,17 +1,15 @@
-import { createLazyFileRoute } from "@tanstack/react-router";
-import Form from "react-bootstrap/Form";
 import Editor from "@monaco-editor/react";
-import { observer } from "mobx-react";
-import { makeAutoObservable } from "mobx";
-import yaml from "yaml";
+import { createLazyFileRoute } from "@tanstack/react-router";
 import type { AnySchema, ValidateFunction } from "ajv";
 import Ajv from "ajv";
-import { Alert, Button, ButtonGroup } from "react-bootstrap";
-import Autosizer from "react-virtualized-auto-sizer";
-import { castError } from "../utils/errors";
-import { Static, Type } from "@sinclair/typebox";
-import { Value } from "@sinclair/typebox/value";
 import lzstring from "lz-string";
+import { makeAutoObservable } from "mobx";
+import { observer } from "mobx-react";
+import { Alert, Button, ButtonGroup } from "react-bootstrap";
+import Form from "react-bootstrap/Form";
+import Autosizer from "react-virtualized-auto-sizer";
+import yaml from "yaml";
+import { castError } from "../utils/errors";
 
 const ajv = new Ajv();
 
