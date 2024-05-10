@@ -276,10 +276,8 @@ const IndexPage = observer(() => {
 			<h3 className={style.inputTitle}>Data</h3>
 
 			<div className={style.schemaControls}>
-				<ButtonGroup>
-					<Button onClick={() => VM.formatSchemaText()}>Format</Button>
-					<Button onClick={() => VM.shareSchema()}>Share</Button>
-				</ButtonGroup>
+				<Button onClick={() => VM.formatSchemaText()}>Format</Button>
+				<Button onClick={() => VM.shareSchema()}>Share</Button>
 			</div>
 			<div className={style.inputControls}>
 				<Form.Select
@@ -291,9 +289,7 @@ const IndexPage = observer(() => {
 					<option value="yaml">YAML</option>
 				</Form.Select>
 
-				<ButtonGroup>
-					<Button onClick={() => VM.formatInputText()}>Format</Button>
-				</ButtonGroup>
+				<Button onClick={() => VM.formatInputText()}>Format</Button>
 			</div>
 			<div className={style.schemaEditor}>
 				<div className="grow">
