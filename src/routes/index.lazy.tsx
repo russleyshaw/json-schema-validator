@@ -8,7 +8,7 @@ import Ajv from "ajv";
 import lzstring from "lz-string";
 import { autorun, makeAutoObservable } from "mobx";
 import { observer } from "mobx-react";
-import { Alert, Button, ButtonGroup } from "react-bootstrap";
+import { Alert, Button } from "react-bootstrap";
 import Form from "react-bootstrap/Form";
 import Autosizer from "react-virtualized-auto-sizer";
 import yaml from "yaml";
