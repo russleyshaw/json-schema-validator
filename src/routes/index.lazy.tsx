@@ -14,6 +14,7 @@ import Autosizer from "react-virtualized-auto-sizer";
 import yaml from "yaml";
 import { castError } from "../utils/errors";
 import { useEffect } from "react";
+import addFormats from "ajv-formats";
 
 import editorWorkerUrl from "monaco-editor/esm/vs/editor/editor.worker?url";
 import jsonWorkerUrl from "monaco-editor/esm/vs/language/json/json.worker?url";
@@ -38,6 +39,7 @@ window.MonacoEnvironment = {
 };
 
 const ajv = new Ajv();
+addFormats(ajv);
 
 enum InputMode {
 	JSON = "json",

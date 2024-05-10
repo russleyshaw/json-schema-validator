@@ -13,6 +13,7 @@
     "@monaco-editor/react": "^4.6.0",
     "@sinclair/typebox": "^0.32.26",
     "ajv": "^8.12.0",
+    "ajv-formats": "^3.0.1",
     "bootstrap": "^5.3.3",
     "framer-motion": "^11.1.7",
     "lz-string": "^1.5.0",
