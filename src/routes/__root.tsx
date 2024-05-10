@@ -1,18 +1,15 @@
-import { Link, Outlet, createRootRoute } from "@tanstack/react-router";
+import { Outlet, createRootRoute } from "@tanstack/react-router";
 import { RouterDevTools } from "../components/RouterDevTools";
+
+import style from "./rootLayout.module.css";
 
 export const Route = createRootRoute({
 	component: () => (
-		<div className="root-layout h-full flex flex-col">
-			<div className="p-2 flex gap-2">
-				<span className="font-bold">Russley's JSON Validator</span>
-				<Link to="/" className="[&.active]:font-bold">
-					Home
-				</Link>
-			</div>
-			<div className="grow">
-				<Outlet />
-			</div>
+		<div className={style.root}>
+			<h1>Russley's JSON Validator</h1>
+
+			<Outlet />
+
 			<RouterDevTools />
 		</div>
 	),

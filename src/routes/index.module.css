@@ -1,0 +1,41 @@
+.mainLayout {
+    flex-grow: 1;
+
+    display: grid;
+    gap: 1rem;
+
+    grid-template: 
+    "schema-title input-title" auto
+    "schema-controls input-controls" auto
+    "schema-editor input-editor" 1fr / 1fr 1fr;
+
+    .schemaTitle {
+        grid-area: schema-title;
+    }
+
+    .inputTitle {
+        grid-area: input-title;
+    }
+
+    .schemaControls {
+        grid-area: schema-controls;
+    }
+    
+    .schemaEditor {
+        grid-area: schema-editor;
+    }
+
+    .schemaEditor, .inputEditor {
+        display: flex;
+        flex-direction: column;
+        gap: 1rem;
+    }
+
+    .inputControls {
+        grid-area: input-controls;
+    }
+
+    .inputEditor {
+        grid-area: input-editor;
+    }
+}

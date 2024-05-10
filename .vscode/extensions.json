@@ -1,0 +1,8 @@
+{
+    "recommendations": [
+        "biomejs.biome",
+        "oven.bun-vscode",
+        "clinyong.vscode-css-modules",
+        "yoavbls.pretty-ts-errors"
+    ]
+}

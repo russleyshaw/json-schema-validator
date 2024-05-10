@@ -18,6 +18,8 @@ import { useEffect } from "react";
 import editorWorkerUrl from "monaco-editor/esm/vs/editor/editor.worker?url";
 import jsonWorkerUrl from "monaco-editor/esm/vs/language/json/json.worker?url";
 
+import style from "./index.module.css";
+
 window.MonacoEnvironment = {
 	getWorker(moduleId, label) {
 		switch (label) {
@@ -269,84 +271,83 @@ const IndexPage = observer(() => {
 	}, [monaco]);
 
 	return (
-		<div className="p-2 h-full">
-			<div className="h-full grid grid-cols-2 gap-2">
-				<div className="flex flex-col gap-2">
-					<h3>JSON Schema</h3>
-					<div>
-						<ButtonGroup>
-							<Button onClick={() => VM.formatSchemaText()}>Format</Button>
-							<Button onClick={() => VM.shareSchema()}>Share</Button>
-						</ButtonGroup>
-					</div>
-					<div className="grow">
-						<Autosizer>
-							{({ width, height }) => {
-								return (
-									<Editor
-										path={SchemaEditorFileName}
-										value={VM.schemaText}
-										height={height}
-										width={width}
-										language="json"
-										onChange={(value) => VM.setSchemaText(value ?? "")}
-									/>
-								);
-							}}
-						</Autosizer>
-					</div>
-					{VM.schemaStatus.isValid && (
-						<Alert variant="success">Schema is valid</Alert>
-					)}
-					{VM.schemaStatus.errors.map((e) => (
-						<Alert key={e} variant="danger">
-							{e}
-						</Alert>
-					))}
+		<div className={style.mainLayout}>
+			<h3 className={style.schemaTitle}>JSON Schema</h3>
+			<h3 className={style.inputTitle}>Data</h3>
+
+			<div className={style.schemaControls}>
+				<ButtonGroup>
+					<Button onClick={() => VM.formatSchemaText()}>Format</Button>
+					<Button onClick={() => VM.shareSchema()}>Share</Button>
+				</ButtonGroup>
+			</div>
+			<div className={style.inputControls}>
+				<Form.Select
+					value={VM.inputMode}
+					onChange={(e) => VM.setInputMode(e.target.value as InputMode)}
+					aria-label="Default select example"
+				>
+					<option value="json">JSON</option>
+					<option value="yaml">YAML</option>
+				</Form.Select>
+
+				<ButtonGroup>
+					<Button onClick={() => VM.formatInputText()}>Format</Button>
+				</ButtonGroup>
+			</div>
+			<div className={style.schemaEditor}>
+				<div className="grow">
+					<Autosizer>
+						{({ width, height }) => {
+							return (
+								<Editor
+									path={SchemaEditorFileName}
+									value={VM.schemaText}
+									height={height}
+									width={width}
+									language="json"
+									onChange={(value) => VM.setSchemaText(value ?? "")}
+								/>
+							);
+						}}
+					</Autosizer>
 				</div>
+				{VM.schemaStatus.isValid && (
+					<Alert variant="success">Schema is valid</Alert>
+				)}
+				{VM.schemaStatus.errors.map((e) => (
+					<Alert key={e} variant="danger">
+						{e}
+					</Alert>
+				))}
+			</div>
 
-				<div className="flex flex-col gap-2">
-					<h3>Data</h3>
-					<Form.Select
-						value={VM.inputMode}
-						onChange={(e) => VM.setInputMode(e.target.value as InputMode)}
-						aria-label="Default select example"
-					>
-						<option value="json">JSON</option>
-						<option value="yaml">YAML</option>
-					</Form.Select>
-
-					<div>
-						<ButtonGroup>
-							<Button onClick={() => VM.formatInputText()}>Format</Button>
-						</ButtonGroup>
-					</div>
-					<div className="grow">
-						<Autosizer>
-							{({ width, height }) => {
-								return (
-									<Editor
-										path={InputEditorFileName}
-										value={VM.inputText}
-										height={height}
-										width={width}
-										language={VM.inputMode === InputMode.JSON ? "json" : "yaml"}
-										onChange={(value) => VM.setInputText(value ?? "")}
-									/>
-								);
-							}}
-						</Autosizer>
-					</div>
-					{VM.inputStatus.isValid && (
-						<Alert variant="success">Input is valid</Alert>
-					)}
-
-					{VM.inputStatus.errors.map((e) => (
-						<Alert key={e} variant="danger">
-							{e}
-						</Alert>
-					))}
+			<div className={style.inputEditor}>
+				<div className="grow">
+					<Autosizer>
+						{({ width, height }) => {
+							return (
+								<Editor
+									path={InputEditorFileName}
+									value={VM.inputText}
+									height={height}
+									width={width}
+									language={VM.inputMode === InputMode.JSON ? "json" : "yaml"}
+									onChange={(value) => VM.setInputText(value ?? "")}
+								/>
+							);
+						}}
+					</Autosizer>
 				</div>
+				{VM.inputStatus.isValid && (
+					<Alert variant="success">Input is valid</Alert>
+				)}
+
+				{VM.inputStatus.errors.map((e) => (
+					<Alert key={e} variant="danger">
+						{e}
+					</Alert>
+				))}
 			</div>
 		</div>
 	);
